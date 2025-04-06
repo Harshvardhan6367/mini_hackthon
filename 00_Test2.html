@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PeaceHub - Stress Quiz</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #f5f7fa;
+            --text-color: #333;
+            --header-bg: #5d69b3;
+            --form-bg: rgba(255, 255, 255, 0.9);
+            --label-bg: #6a75bd;
+            --box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+            --question-bg: rgba(255, 255, 255, 0.95);
+            --button-bg: #6a75bd;
+            --button-text: white;
+            --contact-bg: #5d69b3;
+            --contact-hover: #4a569a;
+            --accent-color: #7d8ac8;
+            --transition: all 0.3s ease;
+        }
+
+        .dark-mode {
+            --bg-color: #121a2a;
+            --text-color: #e0e7ff;
+            --header-bg: #3a4568;
+            --form-bg: rgba(26, 32, 51, 0.95);
+            --label-bg: #4a569a;
+            --box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+            --question-bg: rgba(34, 41, 64, 0.95);
+            --button-bg: #4a569a;
+            --button-text: #ffffff;
+            --contact-bg: #3a4568;
+            --contact-hover: #2d3657;
+            --accent-color: #5d69b3;
+        }
+
+        body {
+            background: linear-gradient(135deg, #e6f0ff 0%, #f0f5ff 50%, #e6f0ff 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            transition: var(--transition);
+            min-height: 100vh;
+            background-attachment: fixed;
+            background-size: 200% 200%;
+            animation: gradientFlow 15s ease infinite;
+        }
+
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .dark-mode body {
+            background: linear-gradient(135deg, #0a1121 0%, #121a2a 50%, #0a1121 100%);
+        }
+
+        header {
+            background: var(--header-bg);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: var(--transition);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+            background-color: rgba(93, 105, 179, 0.9);
+        }
+
+        .dark-mode header {
+            background-color: rgba(58, 69, 104, 0.9);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            font-size: 1.5rem;
+        }
+
+        /* Rest of your existing CSS remains the same */
+        /* ... [Previous CSS content remains unchanged until the end] ... */
+
+    </style>
+</head>
+
+<body>
+    <!-- Dark Mode Toggle -->
+    <div class="dark-mode-toggle" id="darkModeToggle">
+        <i class="fas fa-moon"></i>
+    </div>
+    
+    <header>
+        <div class="logo">
+            <i class="fas fa-peace"></i>
+            <span>PeaceHub</span>
+        </div>
+        <div class="header-right">
+            <span id="username-display" class="username-display">
+                <i class="fas fa-user"></i>
+                <span>Guest</span>
+            </span>
+            <button id="logout-btn" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </button>
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="01_index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="02_articles.html"><i class="fas fa-newspaper"></i> Articles</a></li>
+                    <li><a href="03_meditation.html"><i class="fas fa-spa"></i> Meditation</a></li>
+                    <li><a href="05_chat.html"><i class="fas fa-comments"></i> Chat Support</a></li>
+                    <li><a href="04_Doctors.html"><i class="fas fa-user-md"></i> Doctors</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Stress Quiz Section -->
+    <section id="quiz-section" class="container">
+        <h2>Stress Level Assessment</h2>
+        
+        <div class="form-box">
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            
+            <form id="quiz-form">
+                <div class="question">
+                    <h3>1. How often do you feel overwhelmed by tasks? 
+                        <span class="tooltip">
+                            <i class="fas fa-question-circle"></i>
+                            <span class="tooltiptext">Consider both work and personal responsibilities</span>
+                        </span>
+                    </h3>
+                    <label><input type="radio" name="q1" value="1"> Rarely - I manage my tasks well</label>
+                    <label><input type="radio" name="q1" value="2"> Sometimes - Occasionally feel swamped</label>
+                    <label><input type="radio" name="q1" value="3"> Often - Frequently feel overloaded</label>
+                    <label><input type="radio" name="q1" value="4"> Always - Constantly drowning in tasks</label>
+                </div>
+
+                <div class="question">
+                    <h3>2. How do you handle unexpected challenges?</h3>
+                    <label><input type="radio" name="q2" value="1"> Very well - I adapt quickly</label>
+                    <label><input type="radio" name="q2" value="2"> Okay - I manage after initial surprise</label>
+                    <label><input type="radio" name="q2" value="3"> Not great - It throws me off balance</label>
+                    <label><input type="radio" name="q2" value="4"> I panic - Challenges overwhelm me</label>
+                </div>
+
+                <div class="question">
+                    <h3>3. Do you have trouble sleeping due to stress?</h3>
+                    <label><input type="radio" name="q3" value="1"> Never - I sleep soundly</label>
+                    <label><input type="radio" name="q3" value="2"> Rarely - Only during extreme stress</label>
+                    <label><input type="radio" name="q3" value="3"> Sometimes - Occasional sleepless nights</label>
+                    <label><input type="radio" name="q3" value="4"> Frequently - Sleep is regularly disrupted</label>
+                </div>
+
+                <div class="question">
+                    <h3>4. How often do you feel physically tense or exhausted?</h3>
+                    <label><input type="radio" name="q4" value="1"> Never - I feel physically relaxed</label>
+                    <label><input type="radio" name="q4" value="2"> Occasionally - After particularly busy days</label>
+                    <label><input type="radio" name="q4" value="3"> Often - Multiple times a week</label>
+                    <label><input type="radio" name="q4" value="4"> Always - Constant physical tension</label>
+                </div>
+
+                <div class="question">
+                    <h3>5. Do you feel supported by family and friends?</h3>
+                    <label><input type="radio" name="q5" value="1"> Always - Strong support network</label>
+                    <label><input type="radio" name="q5" value="2"> Most times - Usually feel supported</label>
+                    <label><input type="radio" name="q5" value="3"> Sometimes - Support is inconsistent</label>
+                    <label><input type="radio" name="q5" value="4"> Rarely - Feel isolated or unsupported</label>
+                </div>
+
+                <button type="button" onclick="calculateStress()">
+                    <i class="fas fa-paper-plane"></i> Get My Results
+                </button>
+            </form>
+
+            <div class="loader" id="loader"></div>
+            
+            <div class="result-box" id="result-box">
+                <h3>Your Stress Assessment Results</h3>
+                <p id="result-text"></p>
+                <div id="recommendations"></div>
+            </div>
+        </div>
+    </section>
+
+    <div class="contact">
+        <h2>Need Immediate Help?</h2>
+        <p>If you're feeling overwhelmed or in crisis, these resources are available 24/7:</p>
+        
+        <div class="contact-links">
+            <a href="tel:988">
+                <i class="fas fa-phone-alt"></i> 988 Suicide & Crisis Lifeline
+            </a>
+            <a href="tel:18006624357">
+                <i class="fas fa-phone-alt"></i> NAMI HelpLine: 1-800-662-4357
+            </a>
+            <a href="05_chat.html">
+                <i class="fas fa-comments"></i> PeaceHub Chat Support
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Dark mode toggle functionality
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        
+        darkModeToggle.addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+            
+            // Update icon
+            const icon = darkModeToggle.querySelector('i');
+            if (document.body.classList.contains('dark-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+            
+            // Save preference to localStorage
+            localStorage.setItem('darkMode', document.body.classList.contains('dark-mode') ? 'enabled' : 'disabled');
+        });
+
+        // Check for saved dark mode preference on page load
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            document.body.classList.add('dark-mode');
+            const icon = darkModeToggle.querySelector('i');
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        }
+
+        // Update progress bar as user answers questions
+        const radioInputs = document.querySelectorAll('input[type="radio"]');
+        const progressBar = document.getElementById('progressBar');
+        
+        radioInputs.forEach(input => {
+            input.addEventListener('change', function() {
+                const answeredQuestions = new Set();
+                document.querySelectorAll('input[type="radio"]:checked').forEach(checked => {
+                    answeredQuestions.add(checked.name);
+                });
+                
+                const progress = (answeredQuestions.size / 5) * 100;
+                progressBar.style.width = progress + '%';
+            });
+        });
+
+        function calculateStress() {
+            const loader = document.getElementById('loader');
+            const resultBox = document.getElementById('result-box');
+            const resultText = document.getElementById('result-text');
+            const recommendations = document.getElementById('recommendations');
+            
+            // Show loading spinner
+            loader.style.display = 'block';
+            resultBox.style.display = 'none';
+            
+            // Simulate processing delay
+            setTimeout(() => {
+                let score = 0;
+                let answered = 0;
+                
+                for (let i = 1; i <= 5; i++) {
+                    let checked = document.querySelector(`input[name="q${i}"]:checked`);
+                    if (checked) {
+                        score += parseInt(checked.value);
+                        answered++;
+                    }
+                }
+                
+                // Hide loader
+                loader.style.display = 'none';
+                
+                // Check if all questions answered
+                if (answered < 5) {
+                    resultText.innerHTML = '<span class="emoji">⚠️</span> Please answer all questions to get accurate results.';
+                    resultBox.style.display = 'block';
+                    return;
+                }
+                
+                // Generate results
+                let result = "";
+                let recs = "";
+                
+                if (score <= 7) {
+                    result = '<span class="emoji">😊</span> <strong>Low Stress Level</strong><br>You are managing stress exceptionally well! Your ability to stay calm and handle challenges is impressive.';
+                    recs = '<div class="recommendation"><h4>Recommendations:</h4><ul><li>Continue your current stress management practices</li><li>Consider sharing your techniques with others</li><li>Stay mindful of maintaining this healthy balance</li></ul></div>';
+                } 
+                else if (score <= 13) {
+                    result = '<span class="emoji">😐</span> <strong>Moderate Stress Level</strong><br>You\'re experiencing some stress, but generally managing okay. There\'s room for improvement in your stress management.';
+                    recs = '<div class="recommendation"><h4>Recommendations:</h4><ul><li>Practice daily mindfulness or meditation</li><li>Consider time management techniques</li><li>Ensure you\'re getting regular exercise</li><li>Make time for relaxing activities</li></ul></div>';
+                } 
+                else {
+                    result = '<span class="emoji">😟</span> <strong>High Stress Level</strong><br>Your stress levels are concerning and may be affecting your wellbeing. It\'s important to take action to reduce your stress.';
+                    recs = '<div class="recommendation"><h4>Recommendations:</h4><ul><li>Prioritize self-care and relaxation</li><li>Consider talking to a professional</li><li>Explore stress management resources</li><li>Reach out to your support network</li><li>Try our meditation and relaxation tools</li></ul></div>';
+                }
+                
+                resultText.innerHTML = result;
+                recommendations.innerHTML = recs;
+                resultBox.style.display = 'block';
+                
+                // Scroll to results
+                resultBox.scrollIntoView({ behavior: 'smooth' });
+                
+            }, 1500); // Simulate processing time
+        }
+
+        // Logout functionality
+        document.getElementById("logout-btn").addEventListener("click", function() {
+            // Clear user data from localStorage
+            localStorage.removeItem('username');
+            localStorage.removeItem('isLoggedIn');
+            
+            // Redirect to login page
+            window.location.href = "01_1Login.html";
+        });
+
+        // Check if user is logged in on page load
+        window.onload = function() {
+            if (localStorage.getItem('isLoggedIn') === 'true') {
+                const username = localStorage.getItem('username') || 'User';
+                document.getElementById("username-display").querySelector('span').textContent = username;
+            } else {
+                // If not logged in, redirect to login page
+                window.location.href = "01_1Login.html";
+            }
+            
+            // Add animation to questions after page loads
+            setTimeout(() => {
+                const questions = document.querySelectorAll('.question');
+                questions.forEach(q => q.style.animationPlayState = 'running');
+            }, 300);
+        };
+    </script>
+</body>
+</html>

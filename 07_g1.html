@@ -130,6 +130,11 @@
             transition: all 0.3s;
         }
 
+        #skip-btn {
+            background: linear-gradient(45deg, #D4A5FF, #FF9E9E);
+            margin-top: 10px;
+        }
+
         button:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
@@ -186,6 +191,7 @@
             <h1>Bubble Pop Mental Game</h1>
             <p>Pop bubbles quickly to test your focus and reaction time!</p>
             <button id="start-btn">Start Game</button>
+            <button id="skip-btn">Skip Game and Go to Quiz</button>
         </div>
 
         <div id="end-screen">
@@ -269,6 +275,7 @@
             avgTime: document.getElementById('avg-time'),
             mentalFeedback: document.getElementById('mental-feedback'),
             startBtn: document.getElementById('start-btn'),
+            skipBtn: document.getElementById('skip-btn'),
             popSound: document.getElementById('pop-sound'),
             drumrollSound: document.getElementById('drumroll-sound'),
             notOverMessage: document.getElementById('not-over-message')
@@ -474,6 +481,9 @@
 
         // Event Listeners
         elements.startBtn.addEventListener('click', initGame);
+        elements.skipBtn.addEventListener('click', () => {
+            window.location.href = '01_index.html';
+        });
 
         // Preload sound
         window.addEventListener('load', () => {

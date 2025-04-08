@@ -605,8 +605,8 @@
                     <li><a href="01_index.html"><i class="fas fa-home"></i> Home</a></li>
                     <li><a href="02_articles.html"><i class="fas fa-newspaper"></i> Articles</a></li>
                     <li><a href="03_meditation.html"><i class="fas fa-spa"></i> Meditation</a></li>
-                    <li><a href="05_chat.html"><i class="fas fa-comments"></i> Chat Support</a></li>
-                    <li><a href="04_Doctors.html"><i class="fas fa-user-md"></i> Doctors</a></li>
+                    <li><a href="https://agent.jotform.com/019561cf62ae7d609cb0d3faf8d38aeff7e2">Chat Support</a></li>
+                    <li><a href="04_doctors.html">Doctors</a></li>
                 </ul>
             </nav>
             
@@ -874,5 +874,32 @@
             }, 300);
         };
     </script>
+
+    <script src='https://cdn.jotfor.ms/s/umd/latest/for-embedded-agent.js'></script>
+<script>
+  window.addEventListener("DOMContentLoaded", function() {
+    window.AgentInitializer.init({
+      agentRenderURL: "https://agent.jotform.com/019561cf62ae7d609cb0d3faf8d38aeff7e2",
+      rootId: "JotformAgent-019561cf62ae7d609cb0d3faf8d38aeff7e2",
+      formID: "019561cf62ae7d609cb0d3faf8d38aeff7e2",
+      queryParams: ["skipWelcome=1", "maximizable=1"],
+      domain: "https://www.jotform.com",
+      isDraggable: false,
+      background: "linear-gradient(180deg, #f8e71c 0%, #f5a623 100%)",
+      buttonBackgroundColor: "#50e3c2",
+      buttonIconColor: "#f5a623",
+      variant: false,
+      customizations: {
+        "greeting": "Yes",
+        "greetingMessage": "If you have anything feel free to talk😊",
+        "pulse": "Yes",
+        "position": "left",
+        "autoOpenChatIn": "0"
+      },
+      isVoice: false
+    });
+  });
+</script>
+
 </body>
 </html>
